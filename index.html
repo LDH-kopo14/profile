@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이동현 | 프로필</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=IBM+Plex+Sans+KR:wght@300;400;600;700&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Reset & Variables */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        :root {
+            --bg-color: #f3f4f6;
+            --container-bg: #ffffff;
+            --primary-color: #2563eb;
+            --primary-light: #eff6ff;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --border-color: #e5e7eb;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+            --border-radius: 20px;
+        }
+
+        body {
+            font-family: "IBM Plex Sans KR", "Nanum Gothic", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container Layout */
+        .profile-container {
+            width: 100%;
+            max-width: 840px;
+            background-color: var(--container-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        /* Header / Hero Section */
+        .profile-header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #ffffff;
+            padding: 50px 40px 40px 40px;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-color);
+        }
+
+        .profile-header h1 {
+            font-family: "Gowun Dodum", sans-serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+            color: #f8fafc;
+        }
+
+        /* Custom Pixel Avatar in Header */
+        .avatar-container {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 25px auto;
+            border-radius: 50%;
+            background-color: #ffffff;
+            border: 4px solid var(--primary-color);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Navigation Menu */
+        .profile-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .profile-nav a {
+            font-family: "Gowun Dodum", sans-serif;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 6px 16px;
+            border-radius: 30px;
+            background-color: rgba(255, 255, 255, 0.08);
+            transition: all 0.25s ease;
+        }
+
+        .profile-nav a:hover {
+            color: #ffffff;
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content Padding */
+        .profile-content {
+            padding: 50px 50px;
+        }
+
+        /* Section Spacing & Typography */
+        section {
+            margin-bottom: 70px; 
+        }
+
+        section:last-of-type {
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-family: "Gowun Dodum", sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            scroll-margin-top: 40px; /* 스크롤 이동 시 헤더 여백 확보 */
+        }
+
+        h2::before {
+            content: "■";
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        p {
+            font-family: "Nanum Gothic", sans-serif;
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            word-break: keep-all;
+        }
+
+        .intro-box {
+            background-color: #fafafa;
+            border-left: 4px solid var(--primary-color);
+            padding: 25px;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .intro-text {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            line-height: 1.9;
+        }
+
+        /* Experience Timeline */
+        .experience-list {
+            list-style: none;
+            padding-top: 10px;
+        }
+
+        .experience-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 35px;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .experience-item:last-child {
+            margin-bottom: 10px;
+        }
+
+        .experience-item::before {
+            content: "";
+            position: absolute;
+            left: -7px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            border: 3px solid var(--primary-color);
+            transition: all 0.3s;
+        }
+
+        .experience-item:hover::before {
+            background-color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        .experience-title {
+            font-family: "Gowun Dodum", sans-serif;
+            font-size: 1.15rem;
+            color: #0f172a;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .experience-date {
+            font-family: "IBM Plex Sans KR", sans-serif;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+            background-color: var(--primary-light);
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+
+        .experience-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Hobbies Cards (3-Column Layout) */
+        .hobbies-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .hobby-card {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .hobby-img-wrapper {
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+            background-color: #eaeaea;
+        }
+
+        .hobby-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hobby-card:hover .hobby-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .hobby-info {
+            padding: 20px;
+        }
+
+        .hobby-title {
+            font-family: "Gowun Dodum", sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .hobby-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* My Resolution Box */
+        .resolution-box {
+            background-color: #fafafa;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            margin-top: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .resolution-banner-wrapper {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .resolution-banner-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .resolution-body {
+            padding: 35px 30px;
+            text-align: center;
+        }
+
+        blockquote {
+            font-family: "Gowun Dodum", sans-serif;
+            font-size: 1.35rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -0.5px;
+        }
+
+        blockquote::before, blockquote::after {
+            content: '"';
+            font-size: 2.2rem;
+            color: #cbd5e1;
+            position: absolute;
+            line-height: 1;
+        }
+
+        blockquote::before {
+            left: -24px;
+            top: -10px;
+        }
+
+        blockquote::after {
+            right: -24px;
+            bottom: -25px;
+        }
+
+        .resolution-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-top: 20px;
+            line-height: 1.9;
+        }
+
+        /* Footer */
+        .profile-footer {
+            text-align: center;
+            padding: 35px;
+            font-size: 0.85rem;
+            color: #9ca3af;
+            border-top: 1px solid var(--border-color);
+            background-color: #fbfbfb;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 30px 15px;
+            }
+            .profile-content {
+                padding: 35px 25px;
+            }
+            section {
+                margin-bottom: 55px;
+            }
+            .profile-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-container">
+        <!-- Header / Basic Profile -->
+        <header class="profile-header">
+            <div class="avatar-container">
+                <!-- 첫 소개: basic-profile.png -->
+                <img src="./media/basic-profile.png" alt="이동현 프로필 캐릭터 이미지">
+            </div>
+            <h1>안녕하세요, 이동현입니다</h1>
+            
+            <!-- 상단 네비게이션 메뉴 -->
+            <nav class="profile-nav">
+                <a href="#about">소개</a>
+                <a href="#experience">경력</a>
+                <a href="#hobbies">취미</a>
+                <a href="#resolution">다짐</a>
+            </nav>
+        </header>
+
+        <div class="profile-content">
+            <!-- 소개 -->
+            <section id="about">
+                <h2>소개</h2>
+                <div class="intro-box">
+                    <p class="intro-text">
+                        <strong>배움과 도전</strong>을 즐기며, 일상의 작은 불편함을 기술을 통해 해결하는 과정에서 큰 보람을 느끼는 프론트엔드 개발자 이동현입니다.<br><br>
+                        단순히 화면을 그려내는 것을 넘어 사용자와 비즈니스가 부드럽게 연결되는 인터페이스를 구축하는 것을 지향합니다. 새로운 도구를 익히는 데 주저함이 없고, 더 나은 코드를 위해 동료들과 치열하고 유연하게 토론하는 시간을 사랑합니다.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 경력 -->
+            <section id="experience">
+                <h2>경력 (Experience)</h2>
+                <ul class="experience-list">
+                    <li class="experience-item">
+                        <div class="experience-title">(주) 테크이노베이션 - 웹 프론트엔드 개발자</div>
+                        <div class="experience-date">2024.03 ~ 현재</div>
+                        <p class="experience-desc">자사 서비스 웹 애플리케이션 프론트엔드 개발 및 UI/UX 개선 담당</p>
+                    </li>
+                    <li class="experience-item">
+                        <div class="experience-title">스타트업 '플래닛B' - 인턴 개발자</div>
+                        <div class="experience-date">2023.07 ~ 2023.12</div>
+                        <p class="experience-desc">React 기반 반응형 웹 디자인 구현 및 화장실 청소</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 취미 생활 -->
+            <section id="hobbies">
+                <h2>취미 생활 (Hobbies)</h2>
+                <p>모니터 앞을 벗어난 시간 속에서 새로운 에너지와 영감을 얻고 일상에 활력을 불어넣습니다.</p>
+                
+                <div class="hobbies-container">
+                    <!-- 러닝 -->
+                    <div class="hobby-card">
+                        <div class="hobby-img-wrapper">
+                            <img src="./media/running-profile.png" alt="러닝">
+                        </div>
+                        <div class="hobby-info">
+                            <div class="hobby-title">러닝 (Running)</div>
+                            <p class="hobby-desc">주 3회 한강 변을 달리며 체력을 기르고 복잡한 생각을 비워내며 새로운 집중력을 얻습니다.</p>
+                        </div>
+                    </div>
+                    <!-- 사진 촬영 -->
+                    <div class="hobby-card">
+                        <div class="hobby-img-wrapper">
+                            <img src="./media/photo-profile.png" alt="카메라">
+                        </div>
+                        <div class="hobby-info">
+                            <div class="hobby-title">사진 촬영</div>
+                            <p class="hobby-desc">렌즈 너머 조용한 골목길이나 광활한 자연 풍경의 찰나를 영원히 머무르게 기록합니다.</p>
+                        </div>
+                    </div>
+                    <!-- 카페 탐방 -->
+                    <div class="hobby-card">
+                        <div class="hobby-img-wrapper">
+                            <img src="./media/cafe-profile.png" alt="커피">
+                        </div>
+                        <div class="hobby-info">
+                            <div class="hobby-title">로컬 카페 탐방</div>
+                            <p class="hobby-desc">아늑하고 집중하기 좋은 로컬 개인 카페를 찾아 깊은 생각에 잠기거나 코드를 다듬습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 나의 다짐 -->
+            <section id="resolution">
+                <h2>나의 다짐 (My Resolution)</h2>
+                <div class="resolution-box">
+                    <div class="resolution-banner-wrapper">
+                        <img src="./media/resolution-profile.png" alt="다짐">
+                    </div>
+                    <div class="resolution-body">
+                        <blockquote>
+                            어제보다 단 1%라도 더 성장하는 개발자가 되자.
+                        </blockquote>
+                        <p class="resolution-desc">
+                            빠르게 변화하는 프론트엔드 에코시스템 속에서 흔들리지 않는 기본기의 가치를 기억하겠습니다.<br>
+                            나아가 함께 일하고 소통하는 과정에서 팀원들이 곁에 두고 싶어 하는 든든한 동료로 묵묵히 성장하겠습니다.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="profile-footer">
+            <p>&copy; 2026 Lee Dong-hyun. All rights reserved.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
